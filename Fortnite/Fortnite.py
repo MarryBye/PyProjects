@@ -107,4 +107,4 @@ while len(players) != 1:
         players.remove(loser)
         print(f"Выбыл {loser.name}")
 
-print(f"\nКоролевская победа за игроком {winner.name} [{winner.uniqueID}]!")
+print(f"\nКоролевская победа за игроком {winner.name} [{winner.uniqueID}]!!")
