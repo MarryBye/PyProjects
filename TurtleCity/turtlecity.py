@@ -290,88 +290,116 @@ def rock(x, y, h):
         forward(small_rock)
         left(120)
     end_fill()
+
     go(x, y)
     setheading(0)
 
 
-def steve(x, y, h, clr1, clr2, cl3):
-    width(default_width)
+def steve(x, y, scale, clr1, clr2, clr3):
+    w = 2
+    width(w)
     go(x, y)
 
     # Голова
-    head_x, head_y = xcor(), ycor()
+    head_width = scale + w
+
     color(clr1)
     begin_fill()
     for i in range(4):
-        forward(h)
+        forward(head_width)
+        left(90)
+    end_fill()
+    go(xcor(), ycor())
+
+    # Туловище
+    body_width = head_width
+    body_length = body_width * 1.5
+    hand_width = head_width * 0.5
+    hand_length = body_length
+
+    right(90)
+
+    color(clr2)
+    begin_fill()
+    for i in range(2):
+        forward(body_length)
+        left(90)
+        forward(body_width)
         left(90)
     end_fill()
 
-    body_scale = h / 1.5
+    setheading(0)
 
-    go(xcor() - body_scale / 2, ycor())
+    # Туловище - Рука (Левая)
+    go(xcor() - hand_width, ycor())
 
-    # Туловище
-    body_x, body_y = xcor(), ycor()
-    color(clr2)
-    begin_fill()
-    for i in range(4):
-        forward(h + body_scale)
-        right(90)
-    end_fill()
-
-    # Руки
-    color(clr1)
-    begin_fill()
-    forward(h / 2.8)
-    right(90)
-    forward(h + body_scale)
-    right(90)
-    forward(h / 2.8)
-    right(90)
-    forward(h + body_scale)
-    end_fill()
-    right(90)
-    color(clr2)
-    begin_fill()
-    for i in range(4):
-        forward((h + body_scale) / 4)
-        right(90)
-    end_fill()
-
-    penup()
-    forward(h + body_scale - h / 2.8)
-    pendown()
-    right(90)
     color(clr1)
     begin_fill()
     for i in range(2):
-        forward(h + body_scale)
-        left(90)
-        forward(h / 2.8)
-        left(90)
+        forward(hand_width)
+        right(90)
+        forward(hand_length)
+        right(90)
     end_fill()
+
+    # Туловище - Рука (Левая) - Рукав
     color(clr2)
     begin_fill()
     for i in range(4):
-        forward((h + body_scale) / 4)
-        left(90)
+        forward(hand_width)
+        right(90)
+    end_fill()
+
+    # Туловище - Рука (Правая)
+    go(xcor() + body_width + hand_width, ycor())
+
+    color(clr1)
+    begin_fill()
+    for i in range(2):
+        forward(hand_width)
+        right(90)
+        forward(hand_length)
+        right(90)
+    end_fill()
+
+    # Туловище - Рука (Правая) - Рукав
+    color(clr2)
+
+    begin_fill()
+    for i in range(4):
+        forward(hand_width)
+        right(90)
     end_fill()
 
     # Ноги
-    penup()
-    forward(h + body_scale + 5)
-    pendown()
-    color(cl3)
+    legs_width = head_width
+    legs_length = legs_width * 1.5
+
+    go(xcor(), ycor() - body_length)
+    right(90)
+
+    color(clr3)
     begin_fill()
-    forward(h + body_scale)
-    right(90)
-    forward(h + body_scale - (h / 2.8 * 2))
-    right(90)
-    forward(h + body_scale)
-    right(90)
-    forward(h + body_scale - (h / 2.8 * 2))
+    for i in range(2):
+        forward(legs_length)
+        right(90)
+        forward(legs_width)
+        right(90)
     end_fill()
+
+    # Ботинки
+    go(xcor(), ycor() - legs_length)
+    right(90)
+
+    color("gray")
+    begin_fill()
+    for i in range(2):
+        forward(legs_width)
+        right(90)
+        forward(legs_length * 0.15)
+        right(90)
+    end_fill()
+
     go(x, y)
     setheading(0)
 
@@ -441,5 +469,6 @@ if __name__ == "__main__":
 
     steve(-175, ground_y - 25, 15, "wheat", "pink", "navy")
     steve(175, ground_y - 25, 15, "wheat", "green", "pink")
+    steve(0, ground_y - 25, 15, "chocolate4", "yellow", "brown")
 
     done()
