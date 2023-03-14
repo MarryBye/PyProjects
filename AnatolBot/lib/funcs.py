@@ -73,6 +73,7 @@ class Bot(commands.Bot):
     async def check_is_admin(self, guild, member):
         guild_config = await self.load_data(guild.id, self.datatypes[0])
         admin_role_data = guild_config["admin_role"]
+        admin_role = None
         if admin_role_data is not None:
             admin_role = guild.get_role(admin_role_data)
         return guild.owner.id == member.id or member.guild_permissions.administator or admin_role in member.roles
