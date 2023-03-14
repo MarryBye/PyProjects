@@ -28,8 +28,6 @@ async def on_raw_reaction_add(payload):
     msg = await channel.fetch_message(payload.message_id)
     member = guild.get_member(payload.user_id)
 
-    reaction_table = await main_bot.load_data(guild.id, main_bot.datatypes[2])
-
     await main_bot.on_reaction_message(member, payload.emoji, guild, msg.id, give_type=0)
 
 
@@ -40,14 +38,12 @@ async def on_raw_reaction_remove(payload):
     msg = await channel.fetch_message(payload.message_id)
     member = guild.get_member(payload.user_id)
 
-    reaction_table = await main_bot.load_data(guild.id, main_bot.datatypes[2])
-
     await main_bot.on_reaction_message(member, payload.emoji, guild, msg.id, give_type=1)
 
 
 async def main():
     async with main_bot:
-        await main_bot.start("OTI3ODY4Nzc2MDM5NDU2Nzk4.GBjiJ_.DdO_XiDVvMJAWmQmy-BujOw1upWHGuuzRItuW4")
+        await main_bot.start("OTI3ODY4Nzc2MDM5NDU2Nzk4.Gb1Pzv.e6p2vGZUwcZZw1K47E2ndXQUNNK9UXQjVEYW_I")
 
 
 asyncio.run(main())
