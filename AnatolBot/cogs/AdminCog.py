@@ -46,7 +46,7 @@ class AdminCog(commands.Cog):
 
         await reaction_message_creating.delete()
 
-        if reaction == "\N{THUMBS DOWN SIGN}":
+        if reaction.emoji == "\N{THUMBS DOWN SIGN}":
             return
 
         # FIRST MESSAGE
@@ -83,7 +83,7 @@ class AdminCog(commands.Cog):
 
         await reaction_message_creating.delete()
 
-        if reaction == "\N{THUMBS DOWN SIGN}":
+        if reaction.emoji == "\N{THUMBS DOWN SIGN}":
             return
 
         # THIRD MESSAGE

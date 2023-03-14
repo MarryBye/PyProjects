@@ -1,7 +1,4 @@
 import asyncio
-
-import discord, os
-from discord.ext import commands
 from lib.funcs import *
 
 main_bot = Bot(command_prefix='#', intents=discord.Intents.all(), help_command=None)
@@ -43,7 +40,7 @@ async def on_raw_reaction_remove(payload):
 
 async def main():
     async with main_bot:
-        await main_bot.start("OTI3ODY4Nzc2MDM5NDU2Nzk4.Gb1Pzv.e6p2vGZUwcZZw1K47E2ndXQUNNK9UXQjVEYW_I")
+        await main_bot.start("")
 
 
 asyncio.run(main())
