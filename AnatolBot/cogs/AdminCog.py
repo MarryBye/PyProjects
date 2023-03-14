@@ -14,6 +14,7 @@ class AdminCog(commands.Cog):
         self.bot = bot
         self.category = 'Администраторские'
         self.adminOnly = True
+        print(f"{self.category} команды инициализированы!")
 
     @commands.command()
     async def reaction_message(self, ctx):
@@ -105,6 +106,10 @@ class AdminCog(commands.Cog):
         await self.bot.change_role_reaction(reaction_message.id, ctx.guild.id, reaction_table)
 
         # SAVING REACTION
+
+    @commands.command()
+    async def rm(self, ctx):
+        await self.reaction_message(ctx)
 
 
 async def setup(bot):

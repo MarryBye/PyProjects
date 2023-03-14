@@ -87,9 +87,13 @@ class Bot(commands.Bot):
         guild_id = str(guild_id)
 
         config_table = await self.load_data(guild_id, self.datatypes[0])
-        config_table[setting] = data
 
+        if setting not in config_table:
+            return False
+
+        config_table[setting] = data
         await self.save_data(guild_id, self.datatypes[0], config_table)
+        return True
 
     async def change_role_reaction(self, message_id, guild_id, reaction_table):
         message_id = str(message_id)
