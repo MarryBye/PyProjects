@@ -98,7 +98,22 @@ class SettingsCog(commands.Cog):
 
     @commands.command()
     async def sds(self, ctx, settings):
-        await self.set_disable_setting(ctx, settings)
+        await self.bot.set_disable_setting(ctx, settings)
+
+    @commands.command()
+    async def get_settings(self, ctx):
+        config_table = await self.bot.load_data(ctx.guild.id, self.bot.datatypes[0])
+        text = f"**Роли:**\n" \
+               f"**Администраторская:** <@&{config_table['admin_role']}>\n" \
+               f"**Новостная:** <@&{config_table['news_role']}>\n" \
+               f"**Начальные:** {', '.join([f'<@&{role}>' for role in config_table['start_roles']])}\n" \
+               f"\n**Каналы:**\n" \
+               f"**Новостной:** <#{config_table['news_role']}>\n" \
+               f"**Приветственный:** <#{config_table['welcome_channel']}>\n" \
+               f"**Для логов:** <#{config_table['logs_channel']}>\n" \
+               f"**Для приваток:** <#{config_table['private_room']}>\n" \
+
+        await ctx.reply(text, mention_author=False)
 
 
 async def setup(bot):

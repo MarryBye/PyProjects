@@ -107,10 +107,6 @@ class AdminCog(commands.Cog):
 
         # SAVING REACTION
 
-    @commands.command()
-    async def rm(self, ctx):
-        await self.reaction_message(ctx)
-
 
 async def setup(bot):
     await bot.add_cog(AdminCog(bot))
